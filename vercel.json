@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/show-my-work", "destination": "/#work", "permanent": false }
+  ]
+}
