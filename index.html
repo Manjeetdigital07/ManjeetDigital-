@@ -150,15 +150,22 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spa
 }
 #preloader.done{opacity:0;visibility:hidden;pointer-events:none;}
 .preloader-mark{
-  width:84px;height:84px;
+  width:84px;height:84px;position:relative;
   display:flex;align-items:center;justify-content:center;
   animation:loaderPulse 1.1s var(--ease) infinite;
 }
-.preloader-mark img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 18px rgba(201,162,78,0.35));}
+.preloader-mark::before{
+  content:'';position:absolute;inset:-14px;border-radius:50%;
+  border:1.5px solid transparent;
+  border-top-color:var(--gold);border-right-color:var(--gold-2);
+  animation:loaderSpin 1.3s linear infinite;
+}
+.preloader-mark img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 18px rgba(201,162,78,0.35));position:relative;z-index:1;}
 @keyframes loaderPulse{
   0%,100%{opacity:0.5;transform:scale(0.96);}
   50%{opacity:1;transform:scale(1.04);}
 }
+@keyframes loaderSpin{ to{ transform:rotate(360deg); } }
 
 /* ============================================================
    NAV
@@ -179,10 +186,20 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spa
   height:40px;width:auto;display:block;
   border-radius:8px;
   flex-shrink:0;
+  animation:logoEntrance 1s var(--ease) .1s both;
+  transition:transform .45s var(--ease), filter .45s var(--ease);
+}
+.brand:hover .brand-mark{
+  transform:scale(1.07) rotate(-2deg);
+  filter:drop-shadow(0 0 12px rgba(201,162,78,0.5));
+}
+@keyframes logoEntrance{
+  from{ opacity:0; transform:scale(0.82) rotate(-6deg); }
+  to{ opacity:1; transform:scale(1) rotate(0deg); }
 }
 .footer-logo-full{width:220px;height:auto;border-radius:10px;margin-bottom:18px;}
 .footer-line{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;}
-.drawer-logo{width:120px;height:auto;border-radius:8px;}
+.drawer-logo{width:120px;height:auto;border-radius:8px;animation:logoEntrance .8s var(--ease) .2s both;}
 .brand-text{display:flex;flex-direction:column;line-height:1.2;}
 .brand-text strong{font-family:var(--sans);font-weight:800;font-size:0.95rem;letter-spacing:0.04em;}
 .brand-text small{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--ink-3);text-transform:uppercase;}
@@ -525,6 +542,50 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spa
   background-size:18px 18px;
 }
 .mock-glow{position:absolute;width:140px;height:140px;border-radius:50%;filter:blur(40px);opacity:0.5;}
+
+/* ============================================================
+   PROOF CENTER
+============================================================ */
+.proof-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;margin-bottom:44px;
+}
+.ps-item{background:var(--bg-1);padding:26px 20px;text-align:center;}
+.ps-num{font-family:var(--serif);font-size:2.4rem;color:var(--gold-2);line-height:1;margin-bottom:8px;}
+.ps-label{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3);}
+
+.proof-filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;}
+.pf-btn{
+  font-family:var(--sans);font-size:0.84rem;font-weight:600;color:var(--ink-2);
+  border:1px solid var(--line-strong);border-radius:999px;padding:8px 16px;
+  background:var(--bg-1);transition:border-color .25s,color .25s,background .25s;
+}
+.pf-btn:hover{border-color:var(--gold);color:var(--ink);}
+.pf-btn.is-active{background:linear-gradient(135deg,var(--gold-2),var(--gold));border-color:transparent;color:#1a1306;}
+.case.is-filtered-out{display:none;}
+
+.audit-score{
+  position:absolute;bottom:12px;right:14px;z-index:2;
+  font-family:var(--serif);font-size:1.3rem;color:var(--gold-2);
+  background:rgba(10,10,11,0.7);border:1px solid var(--line-strong);border-radius:var(--r-sm);
+  padding:4px 10px;line-height:1.1;
+}
+.audit-score span{font-family:var(--mono);font-size:0.62rem;color:var(--ink-3);}
+.audit-score.critical{color:#e88;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.06em;}
+
+.proof-cta{
+  text-align:center;margin-top:52px;padding-top:36px;border-top:1px solid var(--line);
+}
+.proof-cta p{color:var(--ink-2);font-size:1rem;margin-bottom:20px;}
+
+.future-stories{background:var(--bg-1);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.fs-inner{max-width:760px;margin:0 auto;text-align:center;}
+.fs-inner > p{color:var(--ink-2);font-size:1.02rem;line-height:1.65;margin-bottom:36px;}
+.fs-row{display:flex;flex-direction:column;gap:16px;text-align:left;}
+.fs-item{display:flex;align-items:flex-start;gap:14px;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 20px;}
+.fs-icon{font-size:1.1rem;color:var(--gold);flex-shrink:0;line-height:1.4;}
+.fs-item span:last-child{font-size:0.92rem;color:var(--ink-2);line-height:1.55;}
+
 .case-body{padding:26px 26px 28px;display:flex;flex-direction:column;gap:14px;flex:1;}
 .case-tag{font-family:var(--mono);font-size:0.66rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;}
 .case-body h3{font-size:1.3rem;font-weight:600;color:var(--ink);}
@@ -640,6 +701,10 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spa
 }
 .cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{outline:none;border-color:var(--gold);}
 .cf-note{font-size:0.78rem;color:var(--ink-3);margin:0;}
+.cf-status{font-size:0.86rem;margin:0;min-height:1.2em;}
+.cf-status.is-sending{color:var(--ink-3);}
+.cf-status.is-success{color:var(--teal);}
+.cf-status.is-fallback{color:var(--gold-2);}
 @media (max-width:600px){.cf-row{grid-template-columns:1fr;}}
 
 /* ============================================================
@@ -958,6 +1023,15 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
 .reveal.is-visible{opacity:1;transform:translateY(0);}
 
 /* ============================================================
+   STAGGERED CARD REVEALS (IntersectionObserver-driven)
+============================================================ */
+.stagger-item{
+  opacity:0;transform:translateY(22px);
+  transition:opacity .6s var(--ease), transform .6s var(--ease);
+}
+.stagger-item.stagger-visible{opacity:1;transform:translateY(0);}
+
+/* ============================================================
    TRUST CALLOUT + VERIFY NOTE
 ============================================================ */
 .trust-callout{
@@ -1054,6 +1128,7 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
   .outcomes-grid{grid-template-columns:repeat(2,1fr);}
   .ind-a-inner{grid-template-columns:1fr 1fr;}
   .work-grid{grid-template-columns:1fr;}
+  .proof-stats{grid-template-columns:repeat(2,1fr);}
   .journey{grid-template-columns:1fr;gap:0;}
   .journey-line{top:23px;bottom:23px;left:23px;right:auto;width:1px;height:auto;background:linear-gradient(to bottom, var(--gold), var(--line) 90%);}
   .journey-step{flex-direction:row;gap:24px;padding-bottom:40px;}
@@ -1093,6 +1168,9 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
   .cmp-cell:last-child{border-bottom:none;}
   .compare-row.compare-head{display:none;}
   .cmp-cell::before{content:attr(data-label);display:block;font-family:var(--mono);font-size:0.6rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+  .proof-stats{grid-template-columns:1fr 1fr;}
+  .proof-filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;}
+  .pf-btn{flex-shrink:0;}
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -1832,67 +1910,207 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
   </div>
 </section>
 
-<!-- ============ PORTFOLIO ============ -->
-<section class="section" id="work">
+<!-- ============ PROOF CENTER ============ -->
+<section class="section proof-center" id="work">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Selected Work</div>
-      <h2>Real systems, built and shipped.</h2>
-      <p>A sample of recent builds and audits, plus two labeled concept projects. No fabricated numbers below — just what each project actually is.</p>
-      <div class="verify-note">Every link below is real and live — click through and check for yourself</div>
+      <div class="eyebrow">The Proof Center</div>
+      <h2>Real work. Real audits. Nothing invented.</h2>
+      <p>Every project below is live — click through and check for yourself. Every audit is a real, independent analysis. Concept and prototype work is labeled exactly as such.</p>
     </div>
 
-    <div class="work-grid reveal">
+    <div class="proof-stats reveal">
+      <div class="ps-item"><div class="ps-num" data-count="14">0</div><div class="ps-label">Live Projects Delivered</div></div>
+      <div class="ps-item"><div class="ps-num" data-count="7">0</div><div class="ps-label">Growth Audits Completed</div></div>
+      <div class="ps-item"><div class="ps-num" data-count="6">0</div><div class="ps-label">Industries Served</div></div>
+      <div class="ps-item"><div class="ps-num" data-count="2">0</div><div class="ps-label">Countries Served</div></div>
+    </div>
 
-      <!-- Dental -->
-      <div class="case">
+    <div class="proof-filters reveal" id="proofFilters">
+      <button class="pf-btn is-active" data-filter="all">All Work</button>
+      <button class="pf-btn" data-filter="real-estate">Real Estate</button>
+      <button class="pf-btn" data-filter="health">Healthcare &amp; Aesthetics</button>
+      <button class="pf-btn" data-filter="hospitality">Hospitality &amp; Food</button>
+      <button class="pf-btn" data-filter="auto">Automotive</button>
+      <button class="pf-btn" data-filter="audit">AI Growth Audits</button>
+      <button class="pf-btn" data-filter="concept">Concept &amp; Prototype</button>
+    </div>
+
+    <div class="work-grid reveal" id="proofGrid">
+
+      <!-- ============ AUDITS ============ -->
+
+      <div class="case is-audit" data-cat="audit real-estate">
         <div class="case-mock">
-          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">v0-dental-clinic-website-ten-rosy.vercel.app</div></div>
-          <div class="mock-body t-dental"><div class="mock-glow" style="background:#57e0c9;top:20%;left:60%;"></div></div>
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">audit · cresco real estate</div></div>
+          <div class="mock-body t-audit"><div class="mock-glow" style="background:#c9a24e;top:25%;left:55%;"></div><div class="audit-score">6.1<span>/10</span></div></div>
         </div>
         <div class="case-body">
-          <span class="case-tag">Dental · Multi-Location · Dubai</span>
-          <h3>Dr Tarannum Dental Clinic</h3>
-          <p>A three-branch Dubai dental practice needed one presence that could build trust for a prosthodontist's work and route enquiries to the nearest branch. We built a calm, premium site structured around treatments, before/after results, and instant WhatsApp booking across all three locations.</p>
+          <span class="case-tag">Independent Audit · Real Estate · Dubai</span>
+          <h3>Cresco Real Estate — Growth Infrastructure Audit</h3>
+          <p>An independent audit of a market-leading Dubai luxury brokerage — 15+ years in market, 100+ RERA-certified consultants, 4.9★ across 70+ reviews. Found inconsistent trust statistics on the homepage, four competing above-the-fold CTAs, and fragmented WhatsApp numbers with no CRM record.</p>
           <div class="case-chips">
-            <span class="chip">Multi-branch booking</span>
-            <span class="chip">AI receptionist opportunity</span>
-            <span class="chip">Next.js</span>
-            <span class="chip">Mobile-first</span>
-            <span class="chip">Local SEO</span>
+            <span class="chip">Trust-signal audit</span>
+            <span class="chip">CTA architecture</span>
+            <span class="chip">WhatsApp consolidation</span>
           </div>
           <div class="case-foot">
-            <a href="https://v0-dental-clinic-website-ten-rosy.vercel.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
-            <span class="case-note">Website build</span>
+            <span class="case-link" style="color:var(--ink-3);">Full audit available on request</span>
+            <span class="case-note">Independent · Unaffiliated</span>
           </div>
         </div>
       </div>
 
-      <!-- Beauty -->
-      <div class="case">
+      <div class="case is-audit" data-cat="audit real-estate">
         <div class="case-mock">
-          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">v0-beauty-service-website-jet.vercel.app</div></div>
-          <div class="mock-body t-beauty"><div class="mock-glow" style="background:#c9a24e;top:30%;left:50%;"></div></div>
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">audit · ax capital</div></div>
+          <div class="mock-body t-audit"><div class="mock-glow" style="background:#57e0c9;top:30%;left:60%;"></div><div class="audit-score">62<span>/100</span></div></div>
         </div>
         <div class="case-body">
-          <span class="case-tag">Beauty &amp; Salon · Abu Dhabi</span>
-          <h3>Swaburah Hair, Makeup &amp; Henna</h3>
-          <p>A services menu spanning dozens of hair, makeup, and henna treatments at different price points. We organized it into a browsable, gallery-led experience that builds visual trust first and lets clients book instantly on WhatsApp without ever feeling like a price list.</p>
+          <span class="case-tag">Independent Audit · Real Estate · Dubai</span>
+          <h3>AX Capital — Revenue Infrastructure &amp; AI Growth Audit</h3>
+          <p>An executive-level audit of a 500-agent, AED 5.5B brokerage. Scored 62/100 on digital maturity and 31/100 on AI maturity — one undifferentiated lead form was feeding the entire 500-agent floor, with zero AI qualification layer in front of it.</p>
           <div class="case-chips">
-            <span class="chip">Service catalog</span>
-            <span class="chip">Gallery-led trust</span>
-            <span class="chip">Instant WhatsApp booking</span>
-            <span class="chip">Mobile-first</span>
+            <span class="chip">62/100 digital maturity</span>
+            <span class="chip">31/100 AI maturity</span>
+            <span class="chip">6-phase roadmap</span>
           </div>
           <div class="case-foot">
-            <a href="https://v0-beauty-service-website-jet.vercel.app/" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
-            <span class="case-note">Website build</span>
+            <span class="case-link" style="color:var(--ink-3);">Full audit available on request</span>
+            <span class="case-note">Independent · Unaffiliated</span>
           </div>
         </div>
       </div>
 
-      <!-- Xceed -->
-      <div class="case">
+      <div class="case is-audit" data-cat="audit real-estate">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">audit · dacha real estate</div></div>
+          <div class="mock-body t-audit"><div class="mock-glow" style="background:#e05c5c;top:35%;left:45%;"></div><div class="audit-score critical">CRITICAL</div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Independent Audit · Real Estate · Dubai</span>
+          <h3>Dacha Real Estate — Growth &amp; AI Opportunity Audit</h3>
+          <p>Uncovered a critical, reproducible defect — the homepage hero image failed to render on repeated mobile visits — alongside a 3/10 CRM integration score and zero lead-qualification layer ahead of the sales conversation.</p>
+          <div class="case-chips">
+            <span class="chip">Critical defect found</span>
+            <span class="chip">6.1/10 digital health</span>
+            <span class="chip">30-day action plan</span>
+          </div>
+          <div class="case-foot">
+            <span class="case-link" style="color:var(--ink-3);">Full audit available on request</span>
+            <span class="case-note">Independent · Unaffiliated</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case is-audit" data-cat="audit real-estate">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">audit · yogi real estate</div></div>
+          <div class="mock-body t-audit"><div class="mock-glow" style="background:#c9a24e;top:20%;left:50%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Public Audit · Real Estate · Dubai</span>
+          <h3>Yogi Real Estate — Public Business Audit</h3>
+          <p>A 50-year Dubai brokerage actively selling AED 60,000,000+ villas, found running lead capture through a bare phone number with no inquiry form, a homepage price filter defaulting to AED 0–500,000, and visible copy errors on its highest-value listings.</p>
+          <div class="case-chips">
+            <span class="chip">No lead capture found</span>
+            <span class="chip">Filter/inventory mismatch</span>
+            <span class="chip">Public analysis</span>
+          </div>
+          <div class="case-foot">
+            <span class="case-link" style="color:var(--ink-3);">Full audit available on request</span>
+            <span class="case-note">Public · Not client work</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case is-audit" data-cat="audit real-estate">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">audit · rake ventures</div></div>
+          <div class="mock-body t-audit"><div class="mock-glow" style="background:#e05c5c;top:30%;left:55%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Independent Audit · Real Estate · Dubai</span>
+          <h3>Rake Ventures — Executive Growth Audit</h3>
+          <p>Found the homepage testimonial section displaying unedited "Lorem ipsum" placeholder text under real-sounding names — the single highest-leverage fix identified — alongside broken listing images and zero CRM-linked automation.</p>
+          <div class="case-chips">
+            <span class="chip">Placeholder testimonials found</span>
+            <span class="chip">Broken images flagged</span>
+            <span class="chip">4 revenue-leak zones</span>
+          </div>
+          <div class="case-foot">
+            <span class="case-link" style="color:var(--ink-3);">Full audit available on request</span>
+            <span class="case-note">Independent · Unaffiliated</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case is-audit" data-cat="audit real-estate">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">audit · aldar properties</div></div>
+          <div class="mock-body t-audit"><div class="mock-glow" style="background:#c9a24e;top:25%;left:55%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Enterprise Audit · Real Estate · Abu Dhabi</span>
+          <h3>Aldar Properties — Growth Audit</h3>
+          <p>A comprehensive digital audit prepared for one of Abu Dhabi's largest master developers, reviewing site performance, SEO foundations, and conversion architecture, surfaced as a prioritized roadmap at enterprise scale.</p>
+          <div class="case-chips">
+            <span class="chip">Performance review</span>
+            <span class="chip">SEO foundations</span>
+            <span class="chip">Conversion architecture</span>
+          </div>
+          <div class="case-foot">
+            <span class="case-link" style="color:var(--ink-3);">Audit available on request</span>
+            <span class="case-note">Independent · Unaffiliated</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case is-audit" data-cat="audit real-estate">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">audit · veersant</div></div>
+          <div class="mock-body t-audit"><div class="mock-glow" style="background:#57e0c9;top:40%;left:35%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Independent Audit · Luxury Real Estate · Dubai</span>
+          <h3>Veersant — Growth Audit</h3>
+          <p>A full digital growth audit for a Dubai luxury real estate brokerage, mapping current lead flow, response times, and digital presence against where enquiries were actually being lost — the groundwork for an infrastructure plan.</p>
+          <div class="case-chips">
+            <span class="chip">Lead flow mapping</span>
+            <span class="chip">Response-time review</span>
+            <span class="chip">Infrastructure roadmap</span>
+          </div>
+          <div class="case-foot">
+            <span class="case-link" style="color:var(--ink-3);">Audit available on request</span>
+            <span class="case-note">Independent · Unaffiliated</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case is-audit" data-cat="audit">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">case study · emaar properties</div></div>
+          <div class="mock-body t-portal"><div class="mock-glow" style="background:#ecd28e;top:20%;left:60%;"></div><div class="audit-score">AED 70B</div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Public Case Study · Not Client Work</span>
+          <h3>Emaar Properties — The System Behind AED 70B</h3>
+          <p>A public teardown of Emaar's 2024 sales system — recurring mall and hospitality revenue funding the next development cycle, a AED 72B backlog turning demand into a structural output — translated into what the same structure looks like at brokerage scale.</p>
+          <div class="case-chips">
+            <span class="chip">Public figures only</span>
+            <span class="chip">Educational teardown</span>
+            <span class="chip">Not commissioned</span>
+          </div>
+          <div class="case-foot">
+            <span class="case-link" style="color:var(--ink-3);">Full case study available on request</span>
+            <span class="case-note">Public · Thought leadership</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ REAL ESTATE (live builds & portals) ============ -->
+
+      <div class="case" data-cat="real-estate">
         <div class="case-mock">
           <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">xceed-dubai-portal.base44.app</div></div>
           <div class="mock-body t-portal"><div class="mock-glow" style="background:#ecd28e;top:25%;left:65%;"></div></div>
@@ -1900,7 +2118,7 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
         <div class="case-body">
           <span class="case-tag">Real Estate Portal · Dubai</span>
           <h3>Xceed Properties Portal</h3>
-          <p>A digital gateway for premium residential, commercial, and industrial real estate in Dubai. Rather than a public brochure site, this needed portal-grade architecture — secure registration, login, and password recovery — built for serious investors expecting market intelligence, not just listings.</p>
+          <p>A digital gateway for premium residential, commercial, and industrial real estate in Dubai — secure registration, login, and password recovery, built for investors expecting market intelligence, not just listings.</p>
           <div class="case-chips">
             <span class="chip">Secure portal architecture</span>
             <span class="chip">Investor-grade UX</span>
@@ -1913,8 +2131,7 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
         </div>
       </div>
 
-      <!-- Bhive -->
-      <div class="case">
+      <div class="case" data-cat="real-estate">
         <div class="case-mock">
           <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">bhiverealestate.base44.app</div></div>
           <div class="mock-body t-concierge"><div class="mock-glow" style="background:#57e0c9;top:35%;left:40%;"></div></div>
@@ -1922,7 +2139,7 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
         <div class="case-body">
           <span class="case-tag">Luxury Real Estate · Dubai</span>
           <h3>Bhive Real Estate</h3>
-          <p>An exclusive digital concierge for luxury property acquisitions and advisory in Dubai's most coveted locations. The brief: an experience that matches the exclusivity of the properties themselves — advisory positioning over listing-site positioning, with gated access for serious enquiries.</p>
+          <p>An exclusive digital concierge for luxury property acquisitions in Dubai's most coveted locations — advisory positioning over listing-site positioning, with gated access for serious enquiries.</p>
           <div class="case-chips">
             <span class="chip">Concierge positioning</span>
             <span class="chip">Gated access</span>
@@ -1935,62 +2152,233 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
         </div>
       </div>
 
-      <!-- Aldar Audit -->
-      <div class="case">
+      <div class="case" data-cat="real-estate">
         <div class="case-mock">
-          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">audit · aldar properties</div></div>
-          <div class="mock-body t-audit"><div class="mock-glow" style="background:#c9a24e;top:25%;left:55%;"></div></div>
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">swank-heritage-living.base44.app</div></div>
+          <div class="mock-body t-portal"><div class="mock-glow" style="background:#c9a24e;top:30%;left:50%;"></div></div>
         </div>
         <div class="case-body">
-          <span class="case-tag">Digital Audit · Real Estate Developer</span>
-          <h3>Aldar Properties — Growth Audit</h3>
-          <p>A comprehensive digital audit prepared for one of Abu Dhabi's largest master developers, reviewing site performance, SEO foundations, and conversion architecture, then surfaced as a prioritized roadmap. This is the same Business Audit step every engagement starts with, applied at enterprise scale.</p>
+          <span class="case-tag">Real Estate Developer Portal · Dubai</span>
+          <h3>Swank Development</h3>
+          <p>The digital residence for a Dubai developer positioning elite architectural projects that bridge European heritage with the city's skyline — a secure, login-gated portal built for serious buyer registration, not casual browsing.</p>
           <div class="case-chips">
-            <span class="chip">Performance review</span>
-            <span class="chip">SEO foundations</span>
-            <span class="chip">Conversion architecture</span>
+            <span class="chip">Secure registration flow</span>
+            <span class="chip">Developer brand portal</span>
+            <span class="chip">Heritage positioning</span>
           </div>
           <div class="case-foot">
-            <span class="case-link" style="color:var(--ink-3);">Audit available on request</span>
-            <span class="case-note">Audit deliverable</span>
+            <a href="https://swank-heritage-living.base44.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Portal build</span>
           </div>
         </div>
       </div>
 
-      <!-- Veersant Audit -->
-      <div class="case">
+      <!-- ============ HEALTHCARE & AESTHETICS ============ -->
+
+      <div class="case" data-cat="health real-estate">
         <div class="case-mock">
-          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">audit · veersant</div></div>
-          <div class="mock-body t-audit"><div class="mock-glow" style="background:#57e0c9;top:40%;left:35%;"></div></div>
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">v0-dental-clinic-website-ten-rosy.vercel.app</div></div>
+          <div class="mock-body t-dental"><div class="mock-glow" style="background:#57e0c9;top:20%;left:60%;"></div></div>
         </div>
         <div class="case-body">
-          <span class="case-tag">Digital Audit · Luxury Real Estate</span>
-          <h3>Veersant — Growth Audit</h3>
-          <p>A full digital growth audit for a Dubai luxury real estate brokerage, mapping current lead flow, response times, and digital presence against where enquiries were actually being lost — the groundwork for an infrastructure plan, not a finished build.</p>
+          <span class="case-tag">Dental · Multi-Location · Dubai</span>
+          <h3>Dr Tarannum Dental Clinic</h3>
+          <p>A three-branch Dubai dental practice needed one presence that could build trust for a prosthodontist's work and route enquiries to the nearest branch. Built around treatments, before/after results, and instant WhatsApp booking across all three locations.</p>
           <div class="case-chips">
-            <span class="chip">Lead flow mapping</span>
-            <span class="chip">Response-time review</span>
-            <span class="chip">Infrastructure roadmap</span>
+            <span class="chip">Multi-branch booking</span>
+            <span class="chip">Before/after gallery</span>
+            <span class="chip">Mobile-first</span>
           </div>
           <div class="case-foot">
-            <span class="case-link" style="color:var(--ink-3);">Audit available on request</span>
-            <span class="case-note">Audit deliverable</span>
+            <a href="https://v0-dental-clinic-website-ten-rosy.vercel.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Website build</span>
           </div>
         </div>
       </div>
 
-      <!-- Al Khadewi -->
-      <div class="case">
+      <div class="case" data-cat="health">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">esthetiqueclinic.lovable.app</div></div>
+          <div class="mock-body t-dental"><div class="mock-glow" style="background:#c9a24e;top:25%;left:50%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Aesthetics &amp; Dermatology · Mumbai</span>
+          <h3>Esthetique Le Divine</h3>
+          <p>A Mumbai anti-aging and aesthetics clinic led by a 15-year dermatologist needed a presence to match FDA-approved technology and a 12,000+ patient history. Built as a calm, credential-led sanctuary with a before/after slider and instant WhatsApp booking.</p>
+          <div class="case-chips">
+            <span class="chip">Before/after slider</span>
+            <span class="chip">Credential-led trust</span>
+            <span class="chip">WhatsApp booking</span>
+          </div>
+          <div class="case-foot">
+            <a href="https://esthetiqueclinic.lovable.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Website build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case" data-cat="health">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">alfalahmedicalclinic.base44.app</div></div>
+          <div class="mock-body t-dental"><div class="mock-glow" style="background:#57e0c9;top:30%;left:55%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Medical &amp; Aesthetic Clinic · UAE</span>
+          <h3>Al Falah Medical Clinic</h3>
+          <p>A UAE clinic spanning aesthetic, dermatology, dental, and general medical care needed one presence that didn't feel fragmented across specialties — built around instant-access booking and an affordable, professional positioning.</p>
+          <div class="case-chips">
+            <span class="chip">Multi-specialty structure</span>
+            <span class="chip">Instant-access booking</span>
+            <span class="chip">Mobile-first</span>
+          </div>
+          <div class="case-foot">
+            <a href="https://alfalahmedicalclinic.base44.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Website build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case" data-cat="health">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">norel-clinic-care.base44.app</div></div>
+          <div class="mock-body t-dental"><div class="mock-glow" style="background:#ecd28e;top:20%;left:45%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Aesthetic &amp; Medical Clinic · Dubai</span>
+          <h3>Norel Medical Center</h3>
+          <p>A Dubai aesthetic and medical clinic needed seamless digital booking to match its personalized-care positioning — built as a premium, treatment-led experience with direct appointment capture.</p>
+          <div class="case-chips">
+            <span class="chip">Seamless booking flow</span>
+            <span class="chip">Treatment-led structure</span>
+            <span class="chip">Premium positioning</span>
+          </div>
+          <div class="case-foot">
+            <a href="https://norel-clinic-care.base44.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Website build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case" data-cat="health">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">astheticskinclinic.base44.app</div></div>
+          <div class="mock-body t-dental"><div class="mock-glow" style="background:#c9a24e;top:35%;left:60%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Skincare &amp; Aesthetics</span>
+          <h3>Aesthetic Skin Studio</h3>
+          <p>A luxury skincare and consultation studio needed an elegant booking portal that felt as considered as the treatments themselves — built around a calm, premium reservation experience.</p>
+          <div class="case-chips">
+            <span class="chip">Elegant booking portal</span>
+            <span class="chip">Consultation-first flow</span>
+            <span class="chip">Premium visual identity</span>
+          </div>
+          <div class="case-foot">
+            <a href="https://astheticskinclinic.base44.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Website build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case" data-cat="health">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">smilebright.base44.app</div></div>
+          <div class="mock-body t-dental"><div class="mock-glow" style="background:#57e0c9;top:25%;left:50%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Cosmetic Dentistry</span>
+          <h3>Smile Bright</h3>
+          <p>An elite cosmetic dentistry and smile-design practice needed a digital presence matching a "serene, modern sanctuary" positioning — built around world-class case presentation rather than a generic clinic template.</p>
+          <div class="case-chips">
+            <span class="chip">Smile-design showcase</span>
+            <span class="chip">Sanctuary positioning</span>
+            <span class="chip">Mobile-first</span>
+          </div>
+          <div class="case-foot">
+            <a href="https://smilebright.base44.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Website build</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ HOSPITALITY & FOOD ============ -->
+
+      <div class="case" data-cat="health">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">v0-beauty-service-website-jet.vercel.app</div></div>
+          <div class="mock-body t-beauty"><div class="mock-glow" style="background:#c9a24e;top:30%;left:50%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Beauty &amp; Salon · Abu Dhabi</span>
+          <h3>Swaburah Hair, Makeup &amp; Henna</h3>
+          <p>A services menu spanning dozens of hair, makeup, and henna treatments needed a browsable, gallery-led experience that builds visual trust first and lets clients book instantly on WhatsApp.</p>
+          <div class="case-chips">
+            <span class="chip">Service catalog</span>
+            <span class="chip">Gallery-led trust</span>
+            <span class="chip">Instant WhatsApp booking</span>
+          </div>
+          <div class="case-foot">
+            <a href="https://v0-beauty-service-website-jet.vercel.app/" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Website build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case" data-cat="hospitality">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">mishrahomestay.base44.app</div></div>
+          <div class="mock-body t-concierge"><div class="mock-glow" style="background:#57e0c9;top:30%;left:45%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Boutique Hospitality</span>
+          <h3>Mishra Home Stay</h3>
+          <p>A refined boutique homestay needed a presence conveying "serene, clean, and comfortable" without the generic OTA-listing feel — built to sell an authentic, peaceful local experience directly.</p>
+          <div class="case-chips">
+            <span class="chip">Boutique positioning</span>
+            <span class="chip">Direct booking (no OTA cut)</span>
+            <span class="chip">Mobile-first</span>
+          </div>
+          <div class="case-foot">
+            <a href="https://mishrahomestay.base44.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Website build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case" data-cat="hospitality">
+        <div class="case-mock">
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">v0-restaurant-website-design.vercel.app</div></div>
+          <div class="mock-body t-audit"><div class="mock-glow" style="background:#e05c5c;top:25%;left:55%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Restaurant · Allahabad, India</span>
+          <h3>Pankaj Sweets &amp; Restaurant</h3>
+          <p>A local restaurant and sweet shop with 50+ menu items across seven cuisines needed an organized, mobile-first digital menu — built as a full categorized menu with per-item pricing and direct WhatsApp ordering.</p>
+          <div class="case-chips">
+            <span class="chip">50+ item digital menu</span>
+            <span class="chip">WhatsApp ordering</span>
+            <span class="chip">Local business, India</span>
+          </div>
+          <div class="case-foot">
+            <a href="https://v0-restaurant-website-design-theta-seven.vercel.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Website build</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ AUTOMOTIVE ============ -->
+
+      <div class="case" data-cat="auto">
         <div class="case-mock">
           <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">alkhadewi.lovable.app</div></div>
           <div class="mock-body t-auto"><div class="mock-glow" style="background:#c9a24e;top:30%;left:50%;"></div></div>
         </div>
         <div class="case-body">
-          <span class="case-tag">Automotive & Luxury · Dubai</span>
+          <span class="case-tag">Automotive &amp; Luxury · Dubai</span>
           <h3>AL KHADEWI Rent A Car</h3>
-          <p>A luxury car and superyacht rental fleet in Dubai needed a digital presence that matched a Rolls Royce and Lamborghini-grade inventory. We built a fleet-led site with instant WhatsApp booking on every vehicle and yacht listing, so a price-and-availability decision that happens in seconds has a system fast enough to match it.</p>
+          <p>A luxury car and superyacht rental fleet needed a digital presence matching a Rolls Royce and Lamborghini-grade inventory — built fleet-led with instant WhatsApp booking on every listing.</p>
           <div class="case-chips">
-            <span class="chip">Fleet & yacht catalog</span>
+            <span class="chip">Fleet &amp; yacht catalog</span>
             <span class="chip">Per-listing WhatsApp booking</span>
             <span class="chip">Luxury visual identity</span>
           </div>
@@ -2001,31 +2389,52 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
         </div>
       </div>
 
-      <!-- Luxury Landing Page - CONCEPT -->
-      <div class="case is-concept">
+      <div class="case" data-cat="auto">
         <div class="case-mock">
-          <span class="concept-badge">Concept Project</span>
-          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">concept · luxury landing page</div></div>
-          <div class="mock-body t-landing"><div class="mock-glow" style="background:#c9a24e;top:30%;left:55%;"></div></div>
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">hskluxurycarrental (v0 build)</div></div>
+          <div class="mock-body t-auto"><div class="mock-glow" style="background:#57e0c9;top:25%;left:55%;"></div></div>
         </div>
         <div class="case-body">
-          <span class="case-tag">Concept Project · Landing Page</span>
-          <h3>Luxury Off-Plan Landing Page</h3>
-          <p>A concept demonstration of the landing-page format built for off-plan launches: one property, one offer, one WhatsApp-first call to action, designed to convert paid traffic rather than inform casual browsers. This is a concept piece illustrating the format — not a delivered client project.</p>
+          <span class="case-tag">Automotive · Dubai</span>
+          <h3>HSK Luxury Car Rental LLC</h3>
+          <p>A fleet spanning economy daily-drivers to a BMW 750 and Land Rover Defender needed transparent, all-in pricing and instant booking — built around a filterable fleet grid with per-car WhatsApp deep-links.</p>
           <div class="case-chips">
-            <span class="chip">Concept demo</span>
-            <span class="chip">Single-property focus</span>
-            <span class="chip">Paid-traffic optimized</span>
+            <span class="chip">Economy + luxury fleet</span>
+            <span class="chip">Transparent pricing grid</span>
+            <span class="chip">Per-car WhatsApp booking</span>
           </div>
           <div class="case-foot">
-            <span class="case-link" style="color:var(--ink-3);">Ask to see a live demo</span>
-            <span class="case-note">Concept project</span>
+            <a href="https://v0-luxury-car-rental-website-chi.vercel.app" target="_blank" rel="noopener" class="case-link">Live Preview →</a>
+            <span class="case-note">Website build</span>
           </div>
         </div>
       </div>
 
-      <!-- 3D Walkthrough - CONCEPT -->
-      <div class="case is-concept">
+      <!-- ============ CONCEPT & PROTOTYPE (clearly labeled) ============ -->
+
+      <div class="case is-concept" data-cat="concept real-estate">
+        <div class="case-mock">
+          <span class="concept-badge">Prototype</span>
+          <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">ajyadproperty.lovable.app</div></div>
+          <div class="mock-body t-walkthrough"><div class="mock-glow" style="background:#ecd28e;top:30%;left:50%;"></div></div>
+        </div>
+        <div class="case-body">
+          <span class="case-tag">Prototype · AI Property Experience</span>
+          <h3>Ajyad — AI-Powered Property Experience</h3>
+          <p>A live prototype of what an off-plan listing could become: a cinematic property page with a live AI advisor, an interactive ROI/yield calculator, and a neighborhood-intelligence map. Labeled a prototype experience in its own footer — built to show the format, not sold as a finished client project.</p>
+          <div class="case-chips">
+            <span class="chip">Live AI advisor demo</span>
+            <span class="chip">Interactive ROI calculator</span>
+            <span class="chip">Prototype, not client work</span>
+          </div>
+          <div class="case-foot">
+            <a href="https://ajyadproperty.lovable.app" target="_blank" rel="noopener" class="case-link">Live Prototype →</a>
+            <span class="case-note">Prototype</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case is-concept" data-cat="concept real-estate">
         <div class="case-mock">
           <span class="concept-badge">Concept Project</span>
           <div class="mock-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">concept · 3d walkthrough</div></div>
@@ -2048,8 +2457,32 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
       </div>
 
     </div>
+
+    <div class="proof-cta reveal">
+      <p>Want the full detail behind any audit above, or references from a recent client? Ask — directly, on the call.</p>
+      <a href="https://wa.me/918052968267?text=Hi%2C%20I%27d%20like%20to%20see%20more%20of%20your%20work%20and%20audits." class="btn btn-secondary" target="_blank" rel="noopener">Ask About Any Project</a>
+    </div>
   </div>
 </section>
+
+<!-- ============ FUTURE CLIENT STORIES ============ -->
+<section class="section future-stories panel">
+  <div class="container">
+    <div class="section-head center reveal" style="margin:0 auto 12px;">
+      <div class="eyebrow" style="justify-content:center;">Future Ready</div>
+      <h2>Client stories &amp; testimonials — coming as they happen.</h2>
+    </div>
+    <div class="fs-inner reveal">
+      <p>We don't have paid testimonials, and we won't fake them. As engagements complete and clients agree to be featured, their results will appear here — with their name attached, not a stock photo and a generic quote.</p>
+      <div class="fs-row">
+        <div class="fs-item"><span class="fs-icon">◈</span><span>Real client, real name, real result — or it doesn't go up.</span></div>
+        <div class="fs-item"><span class="fs-icon">◑</span><span>References available on request — ask to speak with a recent client directly.</span></div>
+        <div class="fs-item"><span class="fs-icon">◉</span><span>Every audit above is independently verifiable — click through and check it yourself.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ============ BUILDING LONG-TERM PARTNERSHIPS ============ -->
 <section class="section panel" id="partnerships">
@@ -2319,8 +2752,9 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
           <label for="cfMessage">What's slowing your business down right now?</label>
           <textarea id="cfMessage" name="message" rows="4" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send Message</button>
-        <p class="cf-note">This opens your email app with your message ready to send — we read every one personally.</p>
+        <button type="submit" class="btn btn-primary" id="cfSubmitBtn" style="align-self:flex-start;">Send Message</button>
+        <p class="cf-status" id="cfStatus" aria-live="polite"></p>
+        <p class="cf-note">We read every message personally. If our inbox integration is briefly unavailable, this opens your email app instead — nothing you write is lost.</p>
       </form>
     </div>
     <div class="contact-details reveal">
@@ -2401,8 +2835,6 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
   <p class="cp-foot-note">Guided by Manjeet Digital · For anything else, WhatsApp us directly</p>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 /* ============================================================
    PRELOADER
@@ -2549,10 +2981,31 @@ window.addEventListener('resize', function(){
 });
 
 /* ============================================================
-   CONTACT FORM (mailto-based — static site, no backend)
+   CONTACT FORM
+   Tries the real /api/lead serverless function first (sends a
+   live notification + confirmation email via the backend). If
+   that endpoint isn't deployed yet, or fails for any reason
+   (network error, missing API key, etc.), falls back to a
+   mailto link that is guaranteed to work with zero setup. The
+   visitor's message is never lost either way.
 ============================================================ */
 var contactForm = document.getElementById('contactForm');
 if(contactForm){
+  var cfStatus = document.getElementById('cfStatus');
+  var cfSubmitBtn = document.getElementById('cfSubmitBtn');
+
+  function cfSetStatus(text, cls){
+    cfStatus.textContent = text;
+    cfStatus.className = 'cf-status' + (cls ? ' ' + cls : '');
+  }
+
+  function cfMailtoFallback(name, contact, business, message){
+    var subject = 'AI Operating System enquiry from ' + name;
+    var body = 'Name: ' + name + '\nContact: ' + contact + '\nBusiness type: ' + business + '\n\nMessage:\n' + message;
+    var mailto = 'mailto:manjeetdigital.buisness@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.location.href = mailto;
+  }
+
   contactForm.addEventListener('submit', function(e){
     e.preventDefault();
     var name = document.getElementById('cfName').value.trim();
@@ -2560,10 +3013,40 @@ if(contactForm){
     var business = document.getElementById('cfBusiness').value;
     var message = document.getElementById('cfMessage').value.trim();
     if(!name || !contact || !message){ return; }
-    var subject = 'AI Operating System enquiry from ' + name;
-    var body = 'Name: ' + name + '\nContact: ' + contact + '\nBusiness type: ' + business + '\n\nMessage:\n' + message;
-    var mailto = 'mailto:manjeetdigital.buisness@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    window.location.href = mailto;
+
+    var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
+    var payload = {
+      name: name,
+      email: isEmail ? contact : '',
+      whatsapp: isEmail ? '' : contact,
+      business: business,
+      message: message,
+      source: 'Website contact form'
+    };
+
+    cfSubmitBtn.disabled = true;
+    cfSetStatus('Sending…', 'is-sending');
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      if(!r.ok) throw new Error('API not available');
+      return r.json();
+    }).then(function(data){
+      if(data && data.ok){
+        cfSetStatus('Sent — we\'ll be in touch shortly. A confirmation is on its way to you now.', 'is-success');
+        contactForm.reset();
+        cfSubmitBtn.disabled = false;
+      } else {
+        throw new Error('API returned failure');
+      }
+    }).catch(function(){
+      cfSetStatus('Opening your email app to finish sending…', 'is-fallback');
+      cfSubmitBtn.disabled = false;
+      cfMailtoFallback(name, contact, business, message);
+    });
   });
 }
 
@@ -2629,8 +3112,31 @@ if('IntersectionObserver' in window){
       }
     });
   }, { threshold: 0.6 });
-  document.querySelectorAll('.infra-stat-item .num').forEach(function(el){ cio.observe(el); });
+  document.querySelectorAll('.infra-stat-item .num, .ps-num').forEach(function(el){ cio.observe(el); });
 }
+
+/* ============================================================
+   PROOF CENTER — FILTER TABS
+============================================================ */
+(function(){
+  var filterBar = document.getElementById('proofFilters');
+  var grid = document.getElementById('proofGrid');
+  if(!filterBar || !grid) return;
+  var buttons = filterBar.querySelectorAll('.pf-btn');
+  var cards = grid.querySelectorAll('.case');
+
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var filter = btn.getAttribute('data-filter');
+      buttons.forEach(function(b){ b.classList.toggle('is-active', b === btn); });
+      cards.forEach(function(card){
+        var cats = (card.getAttribute('data-cat') || '').split(' ');
+        var show = filter === 'all' || cats.indexOf(filter) !== -1;
+        card.classList.toggle('is-filtered-out', !show);
+      });
+    });
+  });
+})();
 
 /* ============================================================
    AI OS PRODUCT DEMO — tab switching + counters + chart
@@ -2845,28 +3351,35 @@ if('IntersectionObserver' in window){
 })();
 
 /* ============================================================
-   GSAP SCROLL ENHANCEMENTS — staggered card reveals
-   (these elements are intentionally NOT part of the .reveal /
-   IntersectionObserver system above, so there is no double
-   animation; if GSAP fails to load, the cards are simply
-   visible by default via their base CSS, so nothing breaks.)
+   STAGGERED CARD REVEALS — IntersectionObserver + CSS delay
+   (Replaces a former GSAP ScrollTrigger implementation. GSAP's
+   gsap.from()+scrollTrigger combo can leave elements stuck at
+   opacity:0 if the trigger's crossing point was already passed
+   before the observer initializes. IntersectionObserver has no
+   such failure mode: calling .observe() immediately reports the
+   target's CURRENT intersection state, so already-visible
+   elements are revealed on the very first callback. This system
+   cannot produce invisible content.)
 ============================================================ */
-if(window.gsap && window.ScrollTrigger && !reduceMotion){
-  gsap.registerPlugin(ScrollTrigger);
+(function(){
+  if(reduceMotion || !('IntersectionObserver' in window)) return;
 
-  function staggerGroup(containerSelector, itemSelector, opts){
+  function staggerGroup(containerSelector, itemSelector){
     document.querySelectorAll(containerSelector).forEach(function(container){
       var items = container.querySelectorAll(itemSelector);
       if(!items.length) return;
-      gsap.from(items, Object.assign({
-        y: 26,
-        opacity: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-        stagger: 0.08,
-        immediateRender: false,
-        scrollTrigger: { trigger: container, start: 'top 90%', once: true }
-      }, opts || {}));
+      items.forEach(function(el, i){
+        el.classList.add('stagger-item');
+        el.style.transitionDelay = Math.min(i * 0.07, 0.6) + 's';
+      });
+      var io = new IntersectionObserver(function(entries, obs){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('stagger-visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      items.forEach(function(el){ io.observe(el); });
     });
   }
 
@@ -2874,29 +3387,19 @@ if(window.gsap && window.ScrollTrigger && !reduceMotion){
   staggerGroup('.outcomes-grid', '.outcome-card');
   staggerGroup('.products-grid', '.product-card');
   staggerGroup('.work-grid', '.case');
-  staggerGroup('.journey', '.journey-step', { y: 20, stagger: 0.12 });
-  staggerGroup('#flowList', '.flow-node', { x: 16, y: 0, stagger: 0.1 });
+  staggerGroup('.journey', '.journey-step');
+  staggerGroup('#flowList', '.flow-node');
 
-  // Recalculate all trigger positions once the page (fonts, images,
-  // embedded content) has fully settled — stale positions calculated
-  // too early are the other common cause of stuck-invisible elements.
+  // Belt-and-suspenders: force full visibility on anything still
+  // hidden 2.5s after load, so content can never remain invisible.
   window.addEventListener('load', function(){
-    setTimeout(function(){ ScrollTrigger.refresh(); }, 100);
+    setTimeout(function(){
+      document.querySelectorAll('.stagger-item').forEach(function(el){
+        el.classList.add('stagger-visible');
+      });
+    }, 2500);
   });
-
-  // Safety net: if any GSAP-controlled element is somehow still
-  // invisible 3 seconds after load (e.g. a ScrollTrigger edge case
-  // this environment couldn't anticipate), force it visible rather
-  // than let content silently disappear.
-  setTimeout(function(){
-    document.querySelectorAll('.trust-item,.outcome-card,.case,.journey-step,.flow-node,.product-card').forEach(function(el){
-      var style = window.getComputedStyle(el);
-      if(parseFloat(style.opacity) < 0.05){
-        gsap.set(el, { opacity: 1, x: 0, y: 0, clearProps: 'transform' });
-      }
-    });
-  }, 3000);
-}
+})();
 
 /* ============================================================
    LIVE CLOCK — AI Receptionist node (real local time, not staged)
@@ -3183,6 +3686,26 @@ setInterval(updateLiveClock, 15000);
     };
     var rec = recMap[a.challenge] || 'a tailored mix of the website, AI, and automation layers';
     var summary = "Here's where I'd start for " + escapeHtml(a.company || 'your business') + ": " + rec + ". Given your timeline (" + escapeHtml(a.timeline || 'flexible') + "), the next real step is a free Discovery Call where we look at your actual numbers, not assumptions.";
+
+    // Fire-and-forget: also notify by email if the serverless function
+    // is deployed. WhatsApp below is the guaranteed channel regardless
+    // of whether this succeeds — this is a bonus, not a dependency.
+    try {
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: a.name || '(not given)',
+          email: a.email || '',
+          whatsapp: a.whatsapp || '',
+          business: a.businessType || 'Not specified',
+          source: 'Growth Concierge chatbot',
+          message: 'Company: ' + (a.company||'—') + ' | Challenge: ' + (a.challenge||'—') +
+                   ' | Budget: ' + (a.budget||'—') + ' | Timeline: ' + (a.timeline||'—')
+        })
+      }).catch(function(){ /* silent — WhatsApp handoff below is guaranteed regardless */ });
+    } catch(err) { /* fetch not available or blocked — no-op, WhatsApp still works */ }
+
     botSay(summary).then(function(){
       var waText = "Hi, I'm " + (a.name||'') + " from " + (a.company||'') + ". Business type: " + (a.businessType||'') + ". Main challenge: " + (a.challenge||'') + ". Budget range: " + (a.budget||'') + ". Timeline: " + (a.timeline||'') + ". Email: " + (a.email||'') + ". I'd like to book a Strategy Call.";
       var waLink = 'https://wa.me/' + WHATSAPP_PRIMARY + '?text=' + encodeURIComponent(waText);
