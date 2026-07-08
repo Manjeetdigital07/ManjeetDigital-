@@ -374,6 +374,50 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spa
 .compare-head .cmp-cell.is-us{color:var(--gold-2);background:transparent;font-weight:700;}
 
 /* ============================================================
+   WHY FOUNDERS WORK WITH MANJEET
+============================================================ */
+.founders-reasons{background:var(--bg);}
+.fr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.fr-card{
+  background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:28px 24px;transition:border-color .3s,transform .3s;
+}
+.fr-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+.fr-icon{font-size:1.3rem;color:var(--gold);display:block;margin-bottom:16px;}
+.fr-card h4{font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:10px;font-family:var(--serif);}
+.fr-card p{font-size:0.88rem;color:var(--ink-2);line-height:1.6;}
+
+/* Reusable subtle end-of-section CTA — a text link, not a button,
+   so persuasive sections get a natural next step without feeling
+   forced or repetitive with the sticky/nav CTAs already present. */
+.section-cta{text-align:center;margin-top:44px;}
+.section-cta-link{
+  font-family:var(--sans);font-weight:700;font-size:0.92rem;color:var(--gold-2);
+  border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .3s,color .3s;
+}
+.section-cta-link:hover{border-color:var(--gold-2);color:var(--gold);}
+
+/* ============================================================
+   AI GROWTH OPERATING SYSTEM — signature framework grid
+============================================================ */
+.growth-os{background:var(--bg-1);}
+.gos-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+}
+.gos-card{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:22px 20px;position:relative;transition:border-color .3s,transform .3s,background .3s;
+}
+.gos-card:hover{border-color:var(--gold);transform:translateY(-3px);background:var(--bg-3);}
+.gos-card.is-loop{border-color:var(--gold-dim);background:linear-gradient(160deg,rgba(201,162,78,0.08),transparent);}
+.gos-num{
+  font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;color:var(--gold);
+  display:block;margin-bottom:12px;
+}
+.gos-card h4{font-size:0.96rem;font-weight:600;color:var(--ink);margin-bottom:8px;font-family:var(--serif);}
+.gos-card p{font-size:0.8rem;color:var(--ink-2);line-height:1.5;}
+
+/* ============================================================
    PROCESS — VISUAL TIMELINE (4 stages)
 ============================================================ */
 .process{background:var(--bg);}
@@ -546,13 +590,19 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spa
 /* ============================================================
    PROOF CENTER
 ============================================================ */
+.rd-label{
+  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--ink-3);text-align:center;margin-bottom:16px;
+}
 .proof-stats{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);
   border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;margin-bottom:44px;
 }
-.ps-item{background:var(--bg-1);padding:26px 20px;text-align:center;}
+.ps-item{background:var(--bg-1);padding:26px 16px;text-align:center;}
 .ps-num{font-family:var(--serif);font-size:2.4rem;color:var(--gold-2);line-height:1;margin-bottom:8px;}
-.ps-label{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3);}
+.ps-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-3);}
+.ps-item.is-untracked{background:var(--bg-2);}
+.ps-num-text{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:var(--ink-3);line-height:1.3;margin-bottom:8px;min-height:2.4rem;display:flex;align-items:center;justify-content:center;}
 
 .proof-filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;}
 .pf-btn{
@@ -644,6 +694,29 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spa
 .founder-points{display:grid;grid-template-columns:1fr 1fr;gap:32px 40px;}
 .fp-label{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
 .fp-item p{font-size:0.92rem;color:var(--ink-2);line-height:1.65;}
+
+/* ============================================================
+   AUTHORITY TIMELINE
+============================================================ */
+.auth-timeline{position:relative;max-width:720px;margin:0 auto;}
+.at-line{
+  position:absolute;left:15px;top:8px;bottom:8px;width:1px;
+  background:linear-gradient(to bottom, var(--line-strong), var(--gold) 60%, var(--gold-2));
+}
+.at-item{display:flex;gap:26px;position:relative;padding-bottom:40px;}
+.at-item:last-child{padding-bottom:0;}
+.at-dot{
+  flex-shrink:0;width:31px;height:31px;border-radius:50%;
+  background:var(--bg-1);border:1px solid var(--line-strong);
+  position:relative;z-index:1;margin-top:2px;
+}
+.at-item.is-now .at-dot{border-color:var(--teal);box-shadow:0 0 0 5px var(--teal-dim);background:var(--bg-2);}
+.at-item.is-future .at-dot{border-color:var(--gold);border-style:dashed;background:transparent;}
+.at-phase{font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;}
+.at-item.is-now .at-phase{color:var(--teal);}
+.at-item.is-future .at-phase{color:var(--ink-3);}
+.at-content h4{font-size:1.08rem;font-weight:600;color:var(--ink);margin-bottom:8px;font-family:var(--serif);}
+.at-content p{font-size:0.88rem;color:var(--ink-2);line-height:1.6;max-width:520px;}
 
 /* ============================================================
    FAQ
@@ -747,38 +820,47 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
   color:var(--ink-3);margin-bottom:4px;
 }
 .pcard-row.roi .pcr-label{color:var(--teal);}
-.pcard-row p{font-size:0.82rem;color:var(--ink-2);line-height:1.5;}
-.pcard-row.roi p{color:var(--ink);}
-.products-note{
-  text-align:center;font-family:var(--mono);font-size:0.72rem;color:var(--ink-3);
-  margin-top:40px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;
-}
-
-/* ============================================================
-   AI PRODUCT ECOSYSTEM
-============================================================ */
-.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-.product-card{
-  background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-md);
-  padding:24px 22px;transition:border-color .35s, transform .35s;
-}
-.product-card:hover{border-color:var(--gold);transform:translateY(-3px);}
-.pcard-head{display:flex;align-items:center;gap:11px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line);}
-.pcard-icon{font-size:1.15rem;color:var(--gold);flex-shrink:0;}
-.pcard-head h4{font-size:1.02rem;font-weight:600;color:var(--ink);font-family:var(--serif);}
-.pcard-row{margin-bottom:12px;}
-.pcard-row:last-child{margin-bottom:0;}
-.pcr-label{
-  display:block;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;
-  color:var(--ink-3);margin-bottom:3px;
-}
-.pcard-row.roi .pcr-label{color:var(--teal);}
 .pcard-row p{font-size:0.83rem;color:var(--ink-2);line-height:1.5;}
 .pcard-row.roi p{color:var(--ink);}
 .products-note{
   text-align:center;font-family:var(--mono);font-size:0.7rem;color:var(--ink-3);
   margin-top:36px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;
 }
+
+/* ============================================================
+   AI ROI CALCULATOR
+============================================================ */
+.roi-shell{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--line-strong);border-radius:var(--r-lg);overflow:hidden;
+  background:var(--bg-1);
+}
+.roi-inputs{padding:36px 34px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:26px;}
+.roi-field label{display:block;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.06em;color:var(--ink-3);text-transform:uppercase;margin-bottom:10px;}
+.roi-field input[type="range"]{
+  width:100%;height:4px;border-radius:999px;background:var(--bg-3);
+  -webkit-appearance:none;appearance:none;outline:none;cursor:pointer;
+}
+.roi-field input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-2),var(--gold));
+  border:2px solid var(--bg-1);box-shadow:0 0 0 1px var(--gold);cursor:pointer;
+}
+.roi-field input[type="range"]::-moz-range-thumb{
+  width:18px;height:18px;border-radius:50%;border:2px solid var(--bg-1);
+  background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 0 0 1px var(--gold);cursor:pointer;
+}
+.roi-val{margin-top:10px;font-family:var(--serif);font-size:1.15rem;color:var(--ink);}
+.roi-output{padding:36px 34px;display:flex;flex-direction:column;background:var(--bg-2);}
+.roi-out-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.roi-out-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:24px;}
+.roi-out-item{background:var(--bg-3);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;}
+.roi-out-item.gold{border-color:var(--gold-dim);}
+.roi-out-num{font-family:var(--serif);font-size:1.9rem;color:var(--ink);line-height:1.1;}
+.roi-out-item.gold .roi-out-num{color:var(--gold-2);}
+.roi-out-sub{font-family:var(--mono);font-size:0.64rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;}
+.roi-disclaimer{font-size:0.78rem;color:var(--ink-3);line-height:1.55;margin-bottom:20px;}
+
 .os-shell{
   border:1px solid var(--line-strong);border-radius:var(--r-lg);overflow:hidden;
   display:grid;grid-template-rows:32px 1fr;grid-template-columns:180px 1fr;
@@ -1120,6 +1202,7 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
   .problem-grid{grid-template-columns:1fr;}
   .partnership-points{gap:30px;}
   .stack-item{flex:1 1 100%;}
+  .gos-grid{grid-template-columns:1fr;}
 }
 @media (max-width:1024px){
   .container{padding:0 24px;}
@@ -1128,13 +1211,15 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
   .outcomes-grid{grid-template-columns:repeat(2,1fr);}
   .ind-a-inner{grid-template-columns:1fr 1fr;}
   .work-grid{grid-template-columns:1fr;}
-  .proof-stats{grid-template-columns:repeat(2,1fr);}
+  .proof-stats{grid-template-columns:repeat(3,1fr);}
+  .gos-grid{grid-template-columns:repeat(3,1fr);}
   .journey{grid-template-columns:1fr;gap:0;}
   .journey-line{top:23px;bottom:23px;left:23px;right:auto;width:1px;height:auto;background:linear-gradient(to bottom, var(--gold), var(--line) 90%);}
   .journey-step{flex-direction:row;gap:24px;padding-bottom:40px;}
   .journey-step:last-child{padding-bottom:0;}
   .js-content p{max-width:none;}
   .mission-grid{grid-template-columns:repeat(2,1fr);}
+  .fr-grid{grid-template-columns:repeat(2,1fr);}
   .products-grid{grid-template-columns:repeat(2,1fr);}
   .founder-grid{grid-template-columns:1fr;gap:36px;}
   .founder-visual{position:static;flex-direction:row;text-align:left;}
@@ -1146,6 +1231,8 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
   .nav-toggle{display:flex;}
   .sticky-cta{display:block;}
   #conciergeLauncher{bottom:78px;}
+  .roi-shell{grid-template-columns:1fr;}
+  .roi-inputs{border-right:none;border-bottom:1px solid var(--line);}
 }
 @media (max-width:768px){
   .hero{padding:140px 0 70px;min-height:auto;}
@@ -1159,6 +1246,8 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
   .contact-details{flex-direction:column;align-items:center;gap:24px;}
   .infra-stat{gap:36px;}
   .mission-grid{grid-template-columns:1fr;}
+  .fr-grid{grid-template-columns:1fr;}
+  .gos-grid{grid-template-columns:1fr 1fr;}
   .products-grid{grid-template-columns:1fr;}
   .founder-visual{flex-direction:column;text-align:center;}
   .founder-points{grid-template-columns:1fr;}
@@ -1274,6 +1363,9 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
     </div>
     <div class="problem-resolve reveal">
       <p>One connected <em>infrastructure</em> replaces all five — not five new tools to manage, one system that already talks to itself.</p>
+    </div>
+    <div class="section-cta reveal">
+      <a href="#products" class="section-cta-link">See what replaces all five ↓</a>
     </div>
   </div>
 </section>
@@ -1517,6 +1609,58 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
   </div>
 </section>
 
+<!-- ============ AI ROI CALCULATOR ============ -->
+<section class="section roi-section panel">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">See The Math</div>
+      <h2>What faster conversion is actually worth.</h2>
+      <p>Enter your own numbers. This runs the calculation live in your browser — nothing is sent anywhere, and nothing here is a guarantee, just arithmetic on your inputs.</p>
+    </div>
+
+    <div class="roi-shell reveal">
+      <div class="roi-inputs">
+        <div class="roi-field">
+          <label for="roiEnquiries">Monthly enquiries</label>
+          <input type="range" id="roiEnquiries" min="5" max="500" value="60" step="5">
+          <div class="roi-val"><span id="roiEnquiriesVal">60</span> / month</div>
+        </div>
+        <div class="roi-field">
+          <label for="roiCurrentConv">Current conversion rate</label>
+          <input type="range" id="roiCurrentConv" min="1" max="40" value="8" step="1">
+          <div class="roi-val"><span id="roiCurrentConvVal">8</span>%</div>
+        </div>
+        <div class="roi-field">
+          <label for="roiTargetConv">Target conversion rate</label>
+          <input type="range" id="roiTargetConv" min="1" max="50" value="15" step="1">
+          <div class="roi-val"><span id="roiTargetConvVal">15</span>%</div>
+        </div>
+        <div class="roi-field">
+          <label for="roiPropValue">Average property value (AED)</label>
+          <input type="range" id="roiPropValue" min="300000" max="20000000" value="1800000" step="50000">
+          <div class="roi-val">AED <span id="roiPropValueVal">1,800,000</span></div>
+        </div>
+        <div class="roi-field">
+          <label for="roiCommission">Average commission rate</label>
+          <input type="range" id="roiCommission" min="0.5" max="5" value="2" step="0.1">
+          <div class="roi-val"><span id="roiCommissionVal">2.0</span>%</div>
+        </div>
+      </div>
+
+      <div class="roi-output">
+        <div class="roi-out-label">Estimated Annual Impact</div>
+        <div class="roi-out-grid">
+          <div class="roi-out-item"><div class="roi-out-num" id="roiExtraSales">0</div><div class="roi-out-sub">Extra sales / year</div></div>
+          <div class="roi-out-item"><div class="roi-out-num" id="roiExtraEnquiries">0</div><div class="roi-out-sub">Extra converted enquiries / year</div></div>
+          <div class="roi-out-item gold"><div class="roi-out-num" id="roiExtraRevenue">AED 0</div><div class="roi-out-sub">Extra commission revenue / year</div></div>
+        </div>
+        <p class="roi-disclaimer">This is arithmetic on the numbers you entered, not a forecast or a guarantee. Your actual results depend on execution, market conditions, and your specific business — validated together in a Discovery Call, using your real data.</p>
+        <a href="https://wa.me/918052968267?text=Hi%2C%20I%20ran%20the%20ROI%20calculator%20on%20your%20site%20and%20want%20to%20talk%20through%20the%20numbers." class="btn btn-primary" target="_blank" rel="noopener">Talk Through These Numbers</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ TRUST / OWNERSHIP ============ -->
 <section class="section trust panel" id="trust">
   <div class="container">
@@ -1584,6 +1728,83 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
         <div class="cmp-cell" data-label="Typical Agency">A vendor relationship: invoice, deliver, renew or churn.</div>
         <div class="cmp-cell is-us" data-label="Manjeet Digital">A long-term technology partner, accountable to the same numbers you are, month after month.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY FOUNDERS WORK WITH MANJEET ============ -->
+<section class="section founders-reasons">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Founder to Founder</div>
+      <h2>Why founders choose to work with me directly.</h2>
+      <p>Not product features — reasons a decision-maker specifically picks this over the alternatives.</p>
+    </div>
+    <div class="fr-grid reveal">
+      <div class="fr-card">
+        <span class="fr-icon">◈</span>
+        <h4>Founder-Level Thinking</h4>
+        <p>You're not explaining your business to a junior account manager. Every conversation is with the person who designs and builds the system — decisions get made in the room, not relayed to someone else.</p>
+      </div>
+      <div class="fr-card">
+        <span class="fr-icon">◐</span>
+        <h4>Speed Over Bureaucracy</h4>
+        <p>No creative briefs, no sign-off chains, no quarterly retros. You describe the problem; the system gets built, tested, and shipped without a committee in between.</p>
+      </div>
+      <div class="fr-card">
+        <span class="fr-icon">◑</span>
+        <h4>Ownership, Not Lock-In</h4>
+        <p>Every account, every login, every line of code is yours. If you ever want to walk away, nothing breaks — that's a deliberate design choice, not a courtesy.</p>
+      </div>
+      <div class="fr-card">
+        <span class="fr-icon">◉</span>
+        <h4>Revenue Language, Not Marketing Language</h4>
+        <p>Every recommendation is framed in leads, conversion rate, and revenue — not impressions or engagement. If it doesn't move a number you actually track, it doesn't get built.</p>
+      </div>
+      <div class="fr-card">
+        <span class="fr-icon">◒</span>
+        <h4>Decision Systems, Not Just Dashboards</h4>
+        <p>The AI layer doesn't just report what happened — it decides what happens next: which lead gets followed up first, which enquiry gets escalated, which one waits. That's a system, not a report.</p>
+      </div>
+      <div class="fr-card">
+        <span class="fr-icon">◍</span>
+        <h4>Built to Scale With the Business</h4>
+        <p>The same architecture that works for ten enquiries a month is designed to still work at a thousand — you shouldn't have to rebuild your infrastructure every time the business grows.</p>
+      </div>
+    </div>
+    <div class="section-cta reveal">
+      <a href="https://wa.me/918052968267?text=Hi%2C%20I%27d%20like%20to%20talk%20through%20whether%20this%20is%20a%20fit%20for%20my%20business." class="section-cta-link">Talk through whether this is a fit →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AI GROWTH OPERATING SYSTEM ============ -->
+<section class="section growth-os panel" id="growth-os">
+  <div class="container">
+    <div class="section-head center reveal" style="margin:0 auto 20px;">
+      <div class="eyebrow" style="justify-content:center;">The Signature Framework</div>
+      <h2>The AI Growth Operating System.</h2>
+      <p style="text-align:center;margin:0 auto;max-width:620px;">This is how every engagement actually runs — from the first piece of research to the moment a system is live and being optimized. Not a sales funnel. A working methodology.</p>
+    </div>
+
+    <div class="gos-grid reveal">
+      <div class="gos-card"><span class="gos-num">01</span><h4>Lead Research</h4><p>Identify businesses where the digital infrastructure genuinely doesn't match the brand's real market position.</p></div>
+      <div class="gos-card"><span class="gos-num">02</span><h4>Competitive Intelligence</h4><p>Map how direct competitors handle the same enquiry — response speed, follow-up, and digital trust signals.</p></div>
+      <div class="gos-card"><span class="gos-num">03</span><h4>Website Audit</h4><p>Direct inspection of the live site: structure, copy, trust architecture, and every conversion path a visitor can take.</p></div>
+      <div class="gos-card"><span class="gos-num">04</span><h4>AI Opportunity Analysis</h4><p>Identify exactly where AI and automation remove real friction — not where it would just look impressive in a deck.</p></div>
+      <div class="gos-card"><span class="gos-num">05</span><h4>CRM Assessment</h4><p>Understand what's already in place and design around it, so nothing gets ripped out that's already working.</p></div>
+      <div class="gos-card"><span class="gos-num">06</span><h4>Outreach</h4><p>A direct, evidence-based approach — the audit itself is the opening conversation, never a generic cold pitch.</p></div>
+      <div class="gos-card"><span class="gos-num">07</span><h4>Follow-Up</h4><p>Systematic, not sporadic — the same discipline recommended to every client, applied to this process first.</p></div>
+      <div class="gos-card"><span class="gos-num">08</span><h4>Discovery Call</h4><p>A no-pressure walkthrough of the findings and what a fix would actually look like — not a sales pitch.</p></div>
+      <div class="gos-card"><span class="gos-num">09</span><h4>Proposal</h4><p>Scoped exactly to what was found in the audit, priced transparently, with no bundled line items that weren't asked for.</p></div>
+      <div class="gos-card"><span class="gos-num">10</span><h4>Implementation</h4><p>Built and connected as one system, phase by phase — never a pile of disconnected deliverables shipped at once.</p></div>
+      <div class="gos-card"><span class="gos-num">11</span><h4>Automation</h4><p>The AI and workflow layer goes live and is tested against real usage, not just a demo environment.</p></div>
+      <div class="gos-card"><span class="gos-num">12</span><h4>Reporting</h4><p>Transparent, plain-language reporting — the identical standard this practice demands of every audit it publishes.</p></div>
+      <div class="gos-card is-loop"><span class="gos-num">13</span><h4>Continuous Optimization</h4><p>Refined on real performance data as the business changes — not rebuilt from scratch every time something shifts.</p></div>
+    </div>
+
+    <div class="section-cta reveal">
+      <a href="https://wa.me/918052968267?text=Hi%2C%20I%27d%20like%20to%20understand%20how%20this%20process%20would%20apply%20to%20my%20business." class="section-cta-link">See how this applies to your business →</a>
     </div>
   </div>
 </section>
@@ -1743,6 +1964,9 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
       </div>
       <p class="demo-caption">Simulated preview · your live system responds based on your real business details</p>
     </div>
+    <div class="section-cta reveal">
+      <a href="#work" class="section-cta-link">See this system live, in real projects →</a>
+    </div>
   </div>
 </section>
 
@@ -1763,6 +1987,9 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
       <div class="outcome-card"><h4>Professional presence</h4><p>An interface that matches the quality of what you actually deliver.</p></div>
       <div class="outcome-card"><h4>Business growth</h4><p>Infrastructure that compounds, instead of a one-time project.</p></div>
       <div class="outcome-card"><h4>Scalable systems</h4><p>What works at ten leads a month keeps working at a thousand.</p></div>
+    </div>
+    <div class="section-cta reveal">
+      <a href="https://wa.me/918052968267?text=Hi%2C%20I%27d%20like%20to%20request%20an%20AI%20Growth%20Audit." class="section-cta-link" target="_blank" rel="noopener">Request an AI Growth Audit →</a>
     </div>
   </div>
 </section>
@@ -1919,11 +2146,14 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
       <p>Every project below is live — click through and check for yourself. Every audit is a real, independent analysis. Concept and prototype work is labeled exactly as such.</p>
     </div>
 
-    <div class="proof-stats reveal">
+    <div class="rd-label reveal">Live Results Dashboard — updated as work ships, nothing here is invented</div>
+    <div class="proof-stats rd-grid reveal">
       <div class="ps-item"><div class="ps-num" data-count="14">0</div><div class="ps-label">Live Projects Delivered</div></div>
       <div class="ps-item"><div class="ps-num" data-count="7">0</div><div class="ps-label">Growth Audits Completed</div></div>
+      <div class="ps-item"><div class="ps-num" data-count="9">0</div><div class="ps-label">AI System Modules Designed</div></div>
       <div class="ps-item"><div class="ps-num" data-count="6">0</div><div class="ps-label">Industries Served</div></div>
       <div class="ps-item"><div class="ps-num" data-count="2">0</div><div class="ps-label">Countries Served</div></div>
+      <div class="ps-item is-untracked"><div class="ps-num-text">Not yet tracked</div><div class="ps-label">Published Client Wins</div></div>
     </div>
 
     <div class="proof-filters reveal" id="proofFilters">
@@ -2551,6 +2781,14 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
         <h2>Why I build systems, not just software.</h2>
         <div class="founder-points">
           <div class="fp-item">
+            <div class="fp-label">Why I Started</div>
+            <p>I didn't set out to run an agency. I started building systems for businesses I could see were leaving revenue on the table — not from lack of effort, but because nothing behind their website was actually working for them. That gap is still what gets me out of bed.</p>
+          </div>
+          <div class="fp-item">
+            <div class="fp-label">Why AI</div>
+            <p>I started building with AI after watching good businesses lose customers to bad systems, not bad products — a packed schedule next to a website that takes ten seconds to load, an agent replying to WhatsApp at midnight because nothing else was watching the door. AI is the most direct fix I've found for that exact gap.</p>
+          </div>
+          <div class="fp-item">
             <div class="fp-label">Mission</div>
             <p>To give independent businesses the same caliber of AI infrastructure that funded, venture-backed companies take for granted — without the enterprise price tag or the loss of ownership.</p>
           </div>
@@ -2559,14 +2797,70 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
             <p>A future where no serious business runs on a patchwork of disconnected tools and a website that goes quiet after 6pm — where AI handles the repetitive revenue work, and people handle the relationships.</p>
           </div>
           <div class="fp-item">
-            <div class="fp-label">Why AI</div>
-            <p>I started building with AI after watching good businesses lose customers to bad systems, not bad products — a packed schedule next to a website that takes ten seconds to load, an agent replying to WhatsApp at midnight because nothing else was watching the door. AI is the most direct fix I've found for that exact gap.</p>
+            <div class="fp-label">The Systems Obsession</div>
+            <p>I'm more interested in the plumbing than the paint. A beautiful website that doesn't qualify a lead, log it, and follow up automatically is a brochure, not a business asset — I'd rather spend a week on CRM logic nobody sees than another day on a hero image nobody remembers.</p>
           </div>
           <div class="fp-item">
             <div class="fp-label">Why Manjeet Digital</div>
             <p>Because I still take the strategy calls personally. Every client works directly with the person who architects and builds their system — not an account manager relaying messages to an offshore team. That's a deliberate constraint, not a limitation.</p>
           </div>
+          <div class="fp-item">
+            <div class="fp-label">The Long Game</div>
+            <p>This isn't built to scale by adding more freelancers to more one-off projects. It's built to become an AI Growth company — fewer clients, deeper systems, compounding results, for as long as it takes to get there.</p>
+          </div>
+          <div class="fp-item">
+            <div class="fp-label">The Future</div>
+            <p>The plan isn't to stay a solo-led practice indefinitely. It's to build the same AI-first discipline into something that scales past any one person — same standards, same ownership-first philosophy, applied to more businesses without diluting either.</p>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUTHORITY TIMELINE ============ -->
+<section class="section timeline-section panel">
+  <div class="container">
+    <div class="section-head center reveal" style="margin:0 auto 56px;">
+      <div class="eyebrow" style="justify-content:center;">How We Got Here</div>
+      <h2>Sequenced by what actually happened, not a calendar.</h2>
+      <p style="text-align:center;margin:0 auto;max-width:540px;">No invented dates — just the real order of what's been built, up to what's next.</p>
+    </div>
+
+    <div class="auth-timeline reveal">
+      <div class="at-line" aria-hidden="true"></div>
+
+      <div class="at-item">
+        <div class="at-dot"></div>
+        <div class="at-content"><span class="at-phase">Phase 01</span><h4>Foundation</h4><p>Started building AI-first digital systems for small and mid-sized businesses — websites designed from day one to connect to a CRM and automation layer, not stand alone.</p></div>
+      </div>
+      <div class="at-item">
+        <div class="at-dot"></div>
+        <div class="at-content"><span class="at-phase">Phase 02</span><h4>First Live Systems</h4><p>Shipped the first live client websites and booking systems across dental, beauty, and hospitality — Dr Tarannum Dental Clinic, Swaburah, and others, each with instant WhatsApp booking built in.</p></div>
+      </div>
+      <div class="at-item">
+        <div class="at-dot"></div>
+        <div class="at-content"><span class="at-phase">Phase 03</span><h4>Real Estate Focus</h4><p>Delivered secure, gated real estate portals and luxury brand sites — Xceed, Bhive, Swank Development, and AL KHADEWI — where trust architecture matters as much as design.</p></div>
+      </div>
+      <div class="at-item">
+        <div class="at-dot"></div>
+        <div class="at-content"><span class="at-phase">Phase 04</span><h4>Independent Audit Practice</h4><p>Completed 7 independent Growth Infrastructure Audits across UAE real estate brokerages — Cresco, AX Capital, Dacha, Yogi, Rake Ventures, Aldar, and Veersant — none commissioned, all published as public analysis.</p></div>
+      </div>
+      <div class="at-item">
+        <div class="at-dot"></div>
+        <div class="at-content"><span class="at-phase">Phase 05</span><h4>The AI Operating System Model</h4><p>Designed the AI Growth Infrastructure model itself — one connected system replacing five disconnected tools — and rebuilt Manjeet Digital's own infrastructure around it first.</p></div>
+      </div>
+      <div class="at-item">
+        <div class="at-dot"></div>
+        <div class="at-content"><span class="at-phase">Phase 06</span><h4>Prototype R&amp;D</h4><p>Built and shipped Ajyad, a live AI-powered property experience prototype — an interactive ROI calculator and AI advisor demo, used to test what the next generation of property pages could look like.</p></div>
+      </div>
+      <div class="at-item is-now">
+        <div class="at-dot"></div>
+        <div class="at-content"><span class="at-phase">Now</span><h4>AI Growth Partnership</h4><p>Positioned fully as an AI Growth Partner rather than an agency — one connected system, one point of accountability, for a small number of long-term clients at a time.</p></div>
+      </div>
+      <div class="at-item is-future">
+        <div class="at-dot"></div>
+        <div class="at-content"><span class="at-phase">Next</span><h4>Scaling The Practice</h4><p>Expanding the audit practice, onboarding the first AI Growth Partnership clients under this model, and building toward the long-term ambition described above — a company, not just a practitioner.</p></div>
       </div>
     </div>
   </div>
@@ -2780,6 +3074,7 @@ footer{background:var(--bg);padding:80px 0 36px;border-top:1px solid var(--line)
         <h5>Infrastructure</h5>
         <a href="#infrastructure">The System</a>
         <a href="#demo">AI OS Preview</a>
+        <a href="#growth-os">Growth Methodology</a>
         <a href="#process">How We Work</a>
         <a href="#stack">Technology Stack</a>
         <a href="#industries">Industries</a>
@@ -3116,6 +3411,62 @@ if('IntersectionObserver' in window){
 }
 
 /* ============================================================
+   AI ROI CALCULATOR — pure client-side arithmetic on the
+   visitor's own inputs. Nothing here is a fabricated statistic;
+   it recalculates live from whatever numbers are entered.
+============================================================ */
+(function(){
+  var enquiries = document.getElementById('roiEnquiries');
+  var currentConv = document.getElementById('roiCurrentConv');
+  var targetConv = document.getElementById('roiTargetConv');
+  var propValue = document.getElementById('roiPropValue');
+  var commission = document.getElementById('roiCommission');
+  if(!enquiries || !currentConv || !targetConv || !propValue || !commission) return;
+
+  var els = {
+    enquiriesVal: document.getElementById('roiEnquiriesVal'),
+    currentConvVal: document.getElementById('roiCurrentConvVal'),
+    targetConvVal: document.getElementById('roiTargetConvVal'),
+    propValueVal: document.getElementById('roiPropValueVal'),
+    commissionVal: document.getElementById('roiCommissionVal'),
+    extraSales: document.getElementById('roiExtraSales'),
+    extraEnquiries: document.getElementById('roiExtraEnquiries'),
+    extraRevenue: document.getElementById('roiExtraRevenue')
+  };
+
+  function formatNum(n){ return Math.round(n).toLocaleString('en-US'); }
+
+  function recalc(){
+    var mEnq = parseFloat(enquiries.value);
+    var cConv = parseFloat(currentConv.value) / 100;
+    var tConv = parseFloat(targetConv.value) / 100;
+    var pVal = parseFloat(propValue.value);
+    var comm = parseFloat(commission.value) / 100;
+
+    els.enquiriesVal.textContent = formatNum(mEnq);
+    els.currentConvVal.textContent = currentConv.value;
+    els.targetConvVal.textContent = targetConv.value;
+    els.propValueVal.textContent = formatNum(pVal);
+    els.commissionVal.textContent = parseFloat(commission.value).toFixed(1);
+
+    var annualEnquiries = mEnq * 12;
+    var currentSales = annualEnquiries * cConv;
+    var targetSales = annualEnquiries * Math.max(tConv, cConv);
+    var extraSales = Math.max(targetSales - currentSales, 0);
+    var extraRevenue = extraSales * pVal * comm;
+
+    els.extraSales.textContent = formatNum(extraSales);
+    els.extraEnquiries.textContent = formatNum(extraSales);
+    els.extraRevenue.textContent = 'AED ' + formatNum(extraRevenue);
+  }
+
+  [enquiries, currentConv, targetConv, propValue, commission].forEach(function(input){
+    input.addEventListener('input', recalc);
+  });
+  recalc();
+})();
+
+/* ============================================================
    PROOF CENTER — FILTER TABS
 ============================================================ */
 (function(){
@@ -3388,6 +3739,7 @@ if('IntersectionObserver' in window){
   staggerGroup('.products-grid', '.product-card');
   staggerGroup('.work-grid', '.case');
   staggerGroup('.journey', '.journey-step');
+  staggerGroup('.gos-grid', '.gos-card');
   staggerGroup('#flowList', '.flow-node');
 
   // Belt-and-suspenders: force full visibility on anything still
